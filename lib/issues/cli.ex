@@ -22,7 +22,7 @@ defmodule Issues.CLI do
   def parse_args(argv) do
     parse =
       OptionParser.parse(argv,
-        strict: [help: :boolean],
+        switches: [help: :boolean],
         aliases: [h: :help]
       )
 
