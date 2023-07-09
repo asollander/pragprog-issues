@@ -34,10 +34,12 @@ defmodule Issues.CLI do
     |> Enum.reverse()
   end
 
+
   def sort_into_descending_order(list_of_issues) do
     list_of_issues
     |> Enum.sort(fn i1, i2 -> i1["created_at"] >= i2["created_at"] end)
   end
+
   def sort_into_descending_order2(list_of_issues) do
     list_of_issues
     |> Enum.sort(&sort_by_date(&1, &2))
