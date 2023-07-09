@@ -77,6 +77,20 @@ defmodule Issues.CLI do
     |> args_to_internal_representation()
   end
 
+  @doc """
+  Convert a list to a tuple, converting a string to a number, and
+  potentially using default values.
+
+  ## Example
+    iex> Issues.CLI.args_to_internal_representation(["bob", "foo", "44"])
+    {"bob", "foo", 44}
+
+    iex> Issues.CLI.args_to_internal_representation(["bob", "foo"])
+    {"bob", "foo", 4}
+
+    iex> Issues.CLI.args_to_internal_representation({"babbity", "rabbity"})
+    :help
+  """
   def args_to_internal_representation([user, project, count]) do
     {user, project, String.to_integer(count)}
   end
