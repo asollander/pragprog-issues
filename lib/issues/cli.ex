@@ -1,6 +1,7 @@
 defmodule Issues.CLI do
   @default_count 4
 
+  @issue_fields ["number", "created_at",  "state", "updated_at", "title"]
   @moduledoc """
   Handle the command line parsing and the dispatch to the various
   functions that end up generating a
@@ -26,6 +27,7 @@ defmodule Issues.CLI do
     |> decode_response()
     |> sort_into_descending_order()
     |> last(count)
+    |> Issues.TableFormatter.print_table_for_columns(@issue_fields)
   end
 
   defp last(list, count) do
