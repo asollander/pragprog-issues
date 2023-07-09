@@ -1,4 +1,6 @@
 defmodule Issues.CLI do
+  import Issues.TableFormatter, only: [print_table_for_columns: 2]
+
   @default_count 4
 
   @issue_fields ["number", "created_at",  "state", "updated_at", "title"]
@@ -27,7 +29,7 @@ defmodule Issues.CLI do
     |> decode_response()
     |> sort_into_descending_order()
     |> last(count)
-    |> Issues.TableFormatter.print_table_for_columns(@issue_fields)
+    |> print_table_for_columns(@issue_fields)
   end
 
   defp last(list, count) do
