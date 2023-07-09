@@ -48,27 +48,18 @@ defmodule Issues.Print do
   end
 
   def print_header(sizes) do
-    (get_header(" #", sizes[:number], :left) <>
+    hash = String.pad_leading("#", ceil(sizes[:number] / 2))
+    (get_header(hash, sizes[:number], 2) <>
        "|" <>
-       get_header(" created_at", sizes[:created_at], :middle) <>
+       get_header(" created_at", sizes[:created_at], 1) <>
        "|" <>
-       get_header(" title", sizes[:title], :right))
+       get_header(" title", sizes[:title], 2))
     |> IO.puts()
   end
 
-  def get_header(header, size, :left) do
+  def get_header(header, size, extra) do
     header
-    |> String.pad_trailing(size + 1)
-  end
-
-  def get_header(header, size, :middle) do
-    header
-    |> String.pad_trailing(size + 2)
-  end
-
-  def get_header(header, size, :right) do
-    header
-    |> String.pad_trailing(size + 1)
+    |> String.pad_trailing(size + extra)
   end
 
   def print_line(sizes) do
