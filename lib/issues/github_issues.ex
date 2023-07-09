@@ -1,9 +1,8 @@
 defmodule Issues.GithubIssues do
-  # alias Hex.Application
 
   @user_agent [{"User-agent", "Elixir anders"}]
 
-  # @github_url  Application.fetch_env!(:issues, Github)[:url]
+  @github_url  Application.compile_env(:issues, Github)[:url]
 
   def fetch(user, project) do
     issues_url(user, project)
@@ -14,7 +13,7 @@ defmodule Issues.GithubIssues do
   end
 
   def issues_url(user, project) do
-    "https://api.github.com/repos/#{user}/#{project}/issues"
+    "#{@github_url}/repos/#{user}/#{project}/issues"
   end
 
   def handle_response({:ok, %{status_code: status_code, body: body}}) do
