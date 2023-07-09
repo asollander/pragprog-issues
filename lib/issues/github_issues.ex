@@ -1,5 +1,9 @@
 defmodule Issues.GithubIssues do
+  # alias Hex.Application
+
   @user_agent [{"User-agent", "Elixir anders"}]
+
+  # @github_url  Application.fetch_env!(:issues, Github)[:url]
 
   def fetch(user, project) do
     issues_url(user, project)
